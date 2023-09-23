@@ -6,15 +6,12 @@ from routes import app
 logger = logging.getLogger(__name__)
 @app.route('/digital-colony', methods=['POST'])
 
-def calculate_weight(c):
-    return sum(map(int,c))
-
 def calculate_signature(pair):
     digit1, digit2 = pair[0], pair[1]
     return (digit1 - digit2) % 10
 
 def generate_next_generation(d):
-    weight = calculate_weight(d)
+    weight = sum(map(int,d))
     new_generation = []
     for i in range(len(d)-1):
         pair = d[i:i+2]
