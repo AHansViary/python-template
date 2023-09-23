@@ -11,12 +11,8 @@ def calculate_max_value(w, v, values):
     memo = {}
 
     def dp(weight, volume, idx):
-        if weight <= 0 or volume <= 0 or idx >= n:
-            return 0
-
         if (weight, volume, idx) in memo:
             return memo[(weight, volume, idx)]
-
         curr_weight, curr_volume, value = values[idx]
         if curr_weight > weight or curr_volume > volume:
             result = dp(weight, volume, idx + 1)
@@ -42,4 +38,4 @@ def evaluate():
     finish = time() - start
     logging.info("Time elapsed  :{}".format(finish))
     logging.info("My result :{}".format(result))
-    return json.dumps(str(result))
+    return str(result)
