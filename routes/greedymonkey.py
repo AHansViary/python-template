@@ -23,9 +23,11 @@ def greedy_monkey_solve(w, v, f):
 def evaluate():
     data = request.get_json()
     logging.info("data sent for evaluation {}".format(data))
-    input_value = data.get("input")
+    w = data["w"]
+    v = data["v"]
+    f = data["f"]
     
-    result = greedy_monkey_solve(input_value["w"], input_value["v"], input_value["f"])
+    result = greedy_monkey_solve(w, v, f)
     
     logging.info("My result :{}".format(result))
     return json.dumps(result)
