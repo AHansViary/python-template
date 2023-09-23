@@ -26,9 +26,9 @@ def evaluate():
     w = data["w"]
     v = data["v"]
     f = data["f"]
-    finish = time() - start
     
     result = greedy_monkey_solve(w, v, f)
+    finish = time() - start
     logging.info("Time elapsed  :{}".format(finish))
     logging.info("My result :{}".format(result))
     return json.dumps(str(result))
