@@ -17,7 +17,7 @@ def calculate_max_value(w, v, values):
         if (weight, volume, idx) in memo:
             return memo[(weight, volume, idx)]
 
-        curr_weight, curr_volume, value = fruits[idx]
+        curr_weight, curr_volume, value = values[idx]
         if curr_weight > weight or curr_volume > volume:
             result = dp(weight, volume, idx + 1)
         else:
