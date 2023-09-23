@@ -48,6 +48,7 @@ def getNextProbableWords(classes, statements):
                     if part in current_dict and isinstance(current_dict[part], dict):
                         current_dict = current_dict[part]
                     elif part in current_dict and isinstance(current_dict[part], list):
+                        type_name = current_dict[part]
                         return sorted(class_dict[type_name])[:5]
                     else:
                         return [""]
