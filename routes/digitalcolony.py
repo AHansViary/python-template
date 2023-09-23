@@ -36,7 +36,7 @@ def evaluate():
         generation = part["generations"]
         colons = part["colony"]
         final_colony, final_weight = simulate_generations(colons, generation)
-        logging.info(final_colony)
+        # logging.info(final_colony)
         result.append(final_weight)
     logging.info(time() - start)
     logging.info("My result: {}".format(result))
