@@ -83,7 +83,7 @@ def getNextProbableWords(classes, statements):
 
     return result
 
-@app.route('/greedymonkey', methods=['POST'])
+@app.route('/lazy-developer', methods=['POST'])
 def evaluate():
     data = request.get_json()
     logging.info("data sent for evaluation {}".format(data))
