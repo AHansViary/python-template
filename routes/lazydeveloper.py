@@ -89,8 +89,10 @@ def evaluate():
     data = request.get_json()
     logging.info("data sent for evaluation {}".format(data))
     input_value = data.get("input")
+    classes = data["classes"]
+    statements = data["statements"]
     
-    result = getNextProbableWords(input_value["classes"], input_value["statements"])
+    result = getNextProbableWords(classes, statements)
     
     logging.info("My result :{}".format(result))
     return json.dumps(result)
