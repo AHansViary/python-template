@@ -6,17 +6,28 @@ from routes import app
 
 logger = logging.getLogger(__name__)
 
-def greedy_monkey_solve(w, v, f):
-    # Solve using dynamic programming
-    dp = [[0] * (v+1) for _ in range(w+1)]
+def calculate_max_value(w, v, values):
+    n = len(fruits)
+    memo = {}
 
-    for i in range(1, len(f)+1):
-        weight, volume, value = f[i-1]
-        for j in range(w, weight-1, -1):
-            for k in range(v, volume-1, -1):
-                dp[j][k] = max(dp[j][k], dp[j-weight][k-volume] + value)
+    def dp(weight, volume, values):
+        if weight <= 0 or volume <= 0 or idx >= n:
+            return 0
 
-    return dp[w][v]
+        if (weight, volume, values) in memo:
+            return memo[(weight, volume, values)]
+
+        curr_weight, curr_volume, value = fruits[idx]
+        if curr_weight > weight or curr_volume > volume:
+            result = dp(weight, volume, idx + 1)
+        else:
+            result = max(dp(weight, volume, values + 1),
+                         dp(weight - curr_weight, volume - curr_volume, values + 1) + value)
+
+        memo[(weight, volume, values)] = result
+        return result
+
+    return dp(w, v, 0)
 
 @app.route('/greedymonkey', methods=['POST'])
 def evaluate():
@@ -27,7 +38,7 @@ def evaluate():
     v = data["v"]
     f = data["f"]
     
-    result = greedy_monkey_solve(w, v, f)
+    result = calculate_max_value(w, v, f)
     finish = time() - start
     logging.info("Time elapsed  :{}".format(finish))
     logging.info("My result :{}".format(result))
