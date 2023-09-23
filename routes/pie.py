@@ -31,7 +31,6 @@ def generate_pie_chart(instruments):
                     proportions[j] -= dif*proportions[j]
                     
     # Convert the proportions to radian
-    print(proportions)
     radian = [p * 2 *math.pi for p in proportions]
     
     # Return the radians in summed up list
@@ -45,7 +44,7 @@ def generate_pie_chart(instruments):
 @app.route('/pie-chart', methods=['POST'])
 def evaluate():
     data = request.get_json()
-    logging.info("data sent for evaluation {}".format(data))
+    # logging.info("data sent for evaluation {}".format(data))
     
     result = generate_pie_chart(data)
     
