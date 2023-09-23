@@ -38,4 +38,4 @@ def evaluate():
     finish = time() - start
     logging.info("Time elapsed  :{}".format(finish))
     logging.info("My result :{}".format(result))
-    return str(result)
+    return result
