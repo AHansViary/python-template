@@ -31,7 +31,7 @@ def simulate_generations(start_colony, num_generations):
         colony = generate_next_generation(colony)
     total_weight = calculate_weight(colony)
     return colony, total_weight
-
+'''
 start = time()
 start_colony = "1001"
 num_generations = 10
@@ -39,16 +39,18 @@ num_generations = 10
 final_colony, final_weight = simulate_generations(start_colony, num_generations)
 print("Weight after {} generations: {}".format(num_generations, final_weight))
 print("Time elapsed: {}".format(time() - start))
-
+'''
 def evaluate():
+    start = time()
     data = request.get_json()
     logging.info("data sent for evaluation {}".format(data))
     result = []
     for part in data:
         generation = part["generations"]
         colony = part["colony"]
-        final_weight = simulate_generations(colony, generation)
+        final_colony, final_weight = simulate_generations(colony, generation)
+        logging.info(final_colony)
         result.append(final_weight)
-    
+    logging.info(time()-start)
     logging.info("My result :{}".format(result))
     return json.dumps(result)
