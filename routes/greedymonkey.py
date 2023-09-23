@@ -7,24 +7,24 @@ from routes import app
 logger = logging.getLogger(__name__)
 
 def calculate_max_value(w, v, values):
-    n = len(fruits)
+    n = len(values)
     memo = {}
 
-    def dp(weight, volume, values):
+    def dp(weight, volume, idx):
         if weight <= 0 or volume <= 0 or idx >= n:
             return 0
 
-        if (weight, volume, values) in memo:
-            return memo[(weight, volume, values)]
+        if (weight, volume, idx) in memo:
+            return memo[(weight, volume, idx)]
 
         curr_weight, curr_volume, value = fruits[idx]
         if curr_weight > weight or curr_volume > volume:
             result = dp(weight, volume, idx + 1)
         else:
-            result = max(dp(weight, volume, values + 1),
-                         dp(weight - curr_weight, volume - curr_volume, values + 1) + value)
+            result = max(dp(weight, volume, idx + 1),
+                         dp(weight - curr_weight, volume - curr_volume, idx + 1) + value)
 
-        memo[(weight, volume, values)] = result
+        memo[(weight, volume, idx)] = result
         return result
 
     return dp(w, v, 0)
