@@ -38,11 +38,11 @@ def evaluate():
     logging.info("data sent for evaluation {}".format(data))
     result = []
     for part in data:
-        generation = part["generations"] # number
-        colony = part["colony"] # string
-        final_colony, final_weight = simulate_generations(colony, generation)
+        generation = part["generations"]
+        colons = part["colony"]
+        final_colony, final_weight = simulate_generations(colons, generation)
         logging.info(final_colony)
         result.append(final_weight)
-    logging.info(time()-start)
-    logging.info("My result :{}".format(result))
+    logging.info(time() - start)
+    logging.info("My result: {}".format(result))
     return json.dumps(result)
