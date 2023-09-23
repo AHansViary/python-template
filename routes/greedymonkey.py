@@ -31,4 +31,4 @@ def evaluate():
     result = greedy_monkey_solve(w, v, f)
     logging.info("Time elapsed  :{}".format(finish))
     logging.info("My result :{}".format(result))
-    return str(result)
+    return json.dumps(str(result))
