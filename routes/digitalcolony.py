@@ -3,8 +3,8 @@ import logging
 from time import time
 from flask import request
 from routes import app
+
 logger = logging.getLogger(__name__)
-@app.route('/digital-colony', methods=['POST'])
 
 def generate_next_generation(d):
     weight = sum(map(int,d))
@@ -25,7 +25,8 @@ def simulate_generations(start_colony, num_generations):
         e = generate_next_generation(e)
     total_weight = calculate_weight(e)
     return e, total_weight
-
+    
+@app.route('/digital-colony', methods=['POST'])
 def evaluate():
     start = time()
     data = request.get_json()
