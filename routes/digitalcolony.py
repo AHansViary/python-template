@@ -23,7 +23,7 @@ def simulate_generations(start_colony, num_generations):
     e = [int(digit) for digit in start_colony]
     for _ in range(num_generations):
         e = generate_next_generation(e)
-    total_weight = calculate_weight(e)
+    total_weight = sum(map(int,e))
     return e, total_weight
     
 @app.route('/digital-colony', methods=['POST'])
